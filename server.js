@@ -9,7 +9,7 @@ const fs = require("fs");
 const admin = require("firebase-admin");
 
 // ✅ Put your Firebase service account file in this same folder:
-const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -149,3 +149,4 @@ app.post("/verify-payment", async (req, res) => {
 app.get("/", (req, res) => res.send("PlanB backend is running ✅"));
 
 app.listen(5000, () => console.log("Server running on port 5000 ✅"));
+
